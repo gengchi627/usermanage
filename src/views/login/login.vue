@@ -2,15 +2,13 @@
   <div>
     <div v-show="showregister">
       <h3>登录</h3>
-      <p v-show="showTishi">{{tishi}}</p>
       <input type="text" placeholder="请输入用户名" v-model="username">
       <input type="text" placeholder="请输入密码" v-model="password">
-      <button v-on:click="login">登录</button>
+      <button>登录</button>
       <p v-on:click="ToRegister">没有账号？马上注册</p>
     </div>
     <div v-show="showlogin">
       <h3>注册</h3>
-      <p v-show="showTishi">{{tishi}}</p>
       <input type="text" placeholder="请输入用户名" v-model="newUsername">
       <input type="text" placeholder="请输入密码" v-model="newPassword">
       <button>注册</button>
@@ -24,12 +22,10 @@
     return {
       showregister: true,
       showlogin: false,
-      showTishi: false,
       user_name: '',
       password: '',
       newUsername: '',
-      newPassword: '',
-      tishi: ''
+      newPassword: ''
     }
   },
   methods: {
@@ -40,8 +36,6 @@
     ToLogin () {
       this.showregister = true
       this.showlogin = false
-    },
-    login () {
     }
   }
 }
