@@ -2,13 +2,15 @@
   <div>
     <div v-show="showregister">
       <h3>登录</h3>
+      <p v-show="showTishi">{{tishi}}</p>
       <input type="text" placeholder="请输入用户名" v-model="username">
       <input type="text" placeholder="请输入密码" v-model="password">
-      <button>登录</button>
+      <button v-on:click="login">登录</button>
       <p v-on:click="ToRegister">没有账号？马上注册</p>
     </div>
     <div v-show="showlogin">
       <h3>注册</h3>
+      <p v-show="showTishi">{{tishi}}</p>
       <input type="text" placeholder="请输入用户名" v-model="newUsername">
       <input type="text" placeholder="请输入密码" v-model="newPassword">
       <button>注册</button>
@@ -17,15 +19,23 @@
   </div>
 </template>
 
-<script>export default{
+<script>import { setCookie, getCookie } from '../../assets/js/cookie.js'
+export default{
+  mounted () {
+    if (getCookie('username')) {
+      this.$router.push('/home')
+    }
+  },
   data () {
     return {
+      showTishi: false,
       showregister: true,
       showlogin: false,
       user_name: '',
       password: '',
       newUsername: '',
-      newPassword: ''
+      newPassword: '',
+      tishi: ''
     }
   },
   methods: {
@@ -36,6 +46,23 @@
     ToLogin () {
       this.showregister = true
       this.showlogin = false
+    },
+    login () {
+      if (this.username === '' || this.password === '') {
+        alert('请输入用户名或密码')
+      } else {
+        if (this.username === 'admin' && this.password === '111111') {
+          this.tishi = '登录成功'
+          this.showTishi = true
+          setCookie('username', this.username, 1000 * 60)
+          setTimeout(function () {
+            this.$router.push('/home')
+          }.bind(this), 1000)
+        } else {
+          this.tishi = '登录失败'
+          this.showTishi = true
+        }
+      }
     }
   }
 }
