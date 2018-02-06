@@ -19,7 +19,9 @@
   </div>
 </template>
 
-<script>import { setCookie, getCookie } from '../../assets/js/cookie.js'
+<script>import {} from '../../mock/mock.js'
+import { setCookie, getCookie } from '../../assets/js/cookie.js'
+import { requestLogin } from '../../api/api.js'
 export default{
   mounted () {
     if (getCookie('username')) {
@@ -48,21 +50,21 @@ export default{
       this.showlogin = false
     },
     login () {
-      if (this.username === '' || this.password === '') {
-        alert('请输入用户名或密码')
-      } else {
-        if (this.username === 'admin' && this.password === '111111') {
-          this.tishi = '登录成功'
+      var params = {'username': this.username, 'password': this.password}
+      requestLogin(params).then(data => {
+        let {code, msg} = data
+        if (code !== 200) {
+          this.tishi = msg
+          this.showTishi = true
+        } else {
+          this.tishi = msg
           this.showTishi = true
           setCookie('username', this.username, 1000 * 60)
           setTimeout(function () {
             this.$router.push('/home')
           }.bind(this), 1000)
-        } else {
-          this.tishi = '登录失败'
-          this.showTishi = true
         }
-      }
+      })
     }
   }
 }
@@ -97,5 +99,6 @@ export default{
 
   p {
     cursor: pointer;
+    color: red;
   }
 </style>
