@@ -52,7 +52,7 @@ export default{
     login () {
       var params = {'username': this.username, 'password': this.password}
       requestLogin(params).then(data => {
-        let {code, msg} = data
+        let {code, msg, user} = data
         if (code !== 200) {
           this.tishi = msg
           this.showTishi = true

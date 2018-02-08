@@ -1,6 +1,7 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import { LoginUsers } from './data/user'
+import { LoginUsers, Users } from './data/user'
+let _Users = Users
 
 export default {
   /**
@@ -40,6 +41,24 @@ export default {
           } else {
             resolve([200, {code: 500, msg: '账号或密码错误'}])
           }
+        }, 1000)
+      })
+    })
+
+    /**
+     * 获取人员信息
+     */
+    mock.onGet('/user/list').reply(config => {
+      let {name} = config.params
+      let mockUsers = _Users.filter(user => {
+        if (name && user.name.indexOf(name) === -1) return false
+        return true
+      })
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            users: mockUsers
+          }])
         }, 1000)
       })
     })
