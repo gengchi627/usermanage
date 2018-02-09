@@ -3,7 +3,7 @@
     <el-col :span="24" style="padding-bottom: 0px;" class="toolbar">
       <el-form :inline="true" :model="filters">
         <el-form-item>
-          <el-input placeholder="姓名" atoucomplete="off" v-model="filters.name"></el-input>
+          <el-input placeholder="姓名" atoucomplete="off" v-model.trim="filters.name"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="getUser">查询</el-button>
@@ -54,4 +54,7 @@ export default {
 </script>
 
 <style scoped>
+  .userTable {
+    width: 100%;
+  }
 </style>

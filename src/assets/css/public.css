@@ -1,19 +1,26 @@
 body {
+  margin: 0px;
+  padding: 0px;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
 }
-.el-table{
+
+.el-table {
   border: 1px solid #eaeaea;
 }
-.el-table th{
+
+.el-table th {
   background-color: #eef1f6;
 }
+
 .el-table td, .el-table th {
   height: 40px;
   min-width: 0;
   text-overflow: ellipsis;
   vertical-align: middle;
 }
+
 .toolbar {
   margin: 10px 0;
   background-color: #f2f2f2;

@@ -16,14 +16,8 @@
   </el-form>
 </template>
 
-<script>import { setCookie, getCookie } from '../../assets/js/cookie.js'
-import { requestLogin } from '../../api/api'
+<script>import { requestLogin } from '../api/api'
 export default{
-  mounted () {
-    if (getCookie('username')) {
-      this.$router.push('/home')
-    }
-  },
   data () {
     return {
       logining: false,
@@ -54,7 +48,6 @@ export default{
             if (code !== 200) {
               alert('code:' + code + ',msg:' + msg)
             } else {
-              setCookie('username', this.ruleForm2.account, 1000 * 60)
               sessionStorage.setItem('user', JSON.stringify(user))
               this.$router.push('/user')
             }
