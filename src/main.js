@@ -15,6 +15,14 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
+  components: {App},
+  template: '<App/>',
+  beforeCreate: function () {
+    console.log('beforeCreate')
+  },
+  created: function () {
+    console.log('created')
+  }
 })
+
+Vue.component('hello', {template: '<div>ffff</div>'})

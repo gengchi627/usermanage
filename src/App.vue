@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <hello></hello>
+    <HelloWorld></HelloWorld>
     <router-view/>
   </div>
 </template>
@@ -12,10 +14,11 @@ export default {
 
 <style>
   @import "./assets/css/public.css";
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #1f2d3d;
-}
+
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #1f2d3d;
+  }
 </style>

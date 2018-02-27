@@ -17,7 +17,10 @@
 </template>
 
 <script>import { requestLogin } from '../api/api'
-export default{
+import HelloWorld from '../views/table'
+
+export default {
+  components: {HelloWorld},
   data () {
     return {
       logining: false,

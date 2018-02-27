@@ -24,7 +24,7 @@
     </el-header>
     <el-container>
       <el-aside :width="collapsed?'60':'230'">
-        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+        <el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                  background-color="#eef1f6"
                  active-text-color="#20a0ff" :collapse="collapsed" unique-opened router>
           <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
@@ -34,7 +34,8 @@
                 {{child.name}}
               </el-menu-item>
             </el-submenu>
-            <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" :key="item.children[0].path"><i
+            <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"
+                          :key="item.children[0].path"><i
               :class="item.iconCls"></i>{{item.children[0].name}}
             </el-menu-item>
           </template>
@@ -84,7 +85,10 @@
 </script>
 
 <style escoped>
-  .el-icon-tickets{color: #ffffff;}
+  .el-icon-tickets {
+    color: #ffffff;
+  }
+
   .el-header {
     padding: 0;
   }
